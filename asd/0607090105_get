@@ -1,0 +1,12 @@
+file1=0607090105
+
+file2=$file1'_1'
+sed -n '/<td align="center">/{n;p}' $file1 > $file2
+rm $file1
+sed -i 's/<p align="center">//g' $file2
+sed -i 's/&nbsp;<\/p>//g' $file2
+sed -i s/[[:space:]]//g  $file2
+sed -i 's/$/,/' $file2
+sed -i ':a;N;s/\n/\t/;ba;' $file2
+cat $file2
+
